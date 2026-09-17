@@ -1,0 +1,18 @@
+abstract class GraphicObject {
+  PVector location;                // Position (Location)
+  PVector velocity;                // Vitesse (Velocity)
+  PVector acceleration;            // Accélération (Acceleration)
+
+  color fillColor = color (200);   // Couleur de remplissage (Fill color)
+  color strokeColor = color (255); // Couleur du contour (Stroke color)
+  float strokeWeight = 1;          // Épaisseur du contour (Stroke weight)
+
+  // Mettre à jour (Update)
+  abstract void update(long deltaTime);
+
+  // Afficher (Display)
+  abstract void display();
+  
+  abstract void applyForce(PVector force);
+
+}
