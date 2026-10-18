@@ -1,0 +1,49 @@
+[gd_scene format=4 uid="uid://c766fl78o0cjk"]
+
+[ext_resource type="PackedScene" uid="uid://co806t5p15df4" path="res://scenes/player.tscn" id="1_nnsk1"]
+[ext_resource type="TileSet" uid="uid://11afdi4obq1l" path="res://new_tile_set.tres" id="2_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://ti70ytyp8dt6" path="res://plateforme_mobile.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://bmoiyoc8o6jd5" path="res://scripts/kill_zone.tscn" id="4_k0juu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3sb7"]
+size = Vector2(600, 18)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3qfaw"]
+distance = -10.0
+
+[node name="World" type="Node2D" unique_id=2118820291]
+position = Vector2(-8, -17)
+metadata/_edit_vertical_guides_ = [-327.0]
+
+[node name="Player" parent="." unique_id=1515734761 instance=ExtResource("1_nnsk1")]
+position = Vector2(-81, 1)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=550111241]
+limit_bottom = 50
+limit_smoothed = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=361216385]
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=329539044]
+offset_left = -54.0
+offset_top = 5.0
+offset_right = 546.0
+offset_bottom = 23.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1888821904]
+position = Vector2(246, 14)
+shape = SubResource("RectangleShape2D_f3sb7")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1182668593]
+position = Vector2(-103, 0)
+tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAADAP//AAACAAEAAAADAP7/AAACAAEAAAADAP3/AAACAAEAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAEAP3/AAACAAEAAAAKAP//AAAAAAAAAAAPAP//AAAAAAAAAAA=")
+tile_set = ExtResource("2_rwgxs")
+
+[node name="PlateformeMobile" parent="." unique_id=1432010845 instance=ExtResource("3_4wyf3")]
+position = Vector2(-23, -39)
+
+[node name="KillZone2" parent="." unique_id=1540277835 instance=ExtResource("4_k0juu")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone2" unique_id=464319062]
+position = Vector2(-127, 57)
+shape = SubResource("WorldBoundaryShape2D_3qfaw")

@@ -1,0 +1,52 @@
+  Player player;
+  Enemy enemy;
+  PVector anchor;
+  
+  int deltaTime = 0;
+  int currentTime = 0;
+  int previousTime = 0;
+  
+  void setup() {
+    size(700, 400);
+    currentTime = millis();
+    previousTime = millis();
+  
+    anchor = new PVector(width / 2, 60);
+  
+    player = new Player();
+    enemy = new Enemy(width / 2, 190, anchor);
+    
+    player.velocity = new PVector(5,0);
+  
+    enemy.setDistance(200, 201);
+    enemy.velocity = new PVector(5,0);
+    enemy.setMaxRopeLength(100);
+    enemy.setRopeLength(350);
+  
+    enemy.setTarget(player.location);
+  }
+  
+  void draw() {
+    timeManagement();
+    update(deltaTime);
+    display();
+  }
+  
+  void update(float delta) {
+    player.update(delta);
+  
+    enemy.updateTarget(player.location.x, player.location.y);
+    enemy.update(delta);
+  }
+  
+  void display() {
+    background(255);
+  
+    enemy.display();
+    player.display();
+  }
+  void timeManagement() {
+    currentTime = millis();
+    deltaTime = currentTime - previousTime;
+    previousTime = currentTime;
+  }
