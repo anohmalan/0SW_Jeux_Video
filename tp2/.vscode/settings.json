@@ -1,10 +1,11 @@
 {
-    "godotTools.editorPath.godot4": "C:\\Users\\anohm\\Godot\\Editors\\.editor_config\\c07_plateforme\\Godot_v4.7.2-stable_win64.exe",
-    "editor.tabSize": 4,
-    "editor.insertSpaces": false,
-    "files.eol": "\n",
-    "files.exclude": {
-        "**/*.gd.uid": true,
-        "**/*.cs.uid": true
-    }
+  "godotTools.editorPath.godot4": "C:\\Users\\anohm\\Godot\\Editors\\.editor_config\\c07_plateforme\\Godot_v4.7.2-stable_win64.exe",
+  "editor.tabSize": 4,
+  "editor.insertSpaces": false,
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/*.gd.uid": true,
+    "**/*.cs.uid": true
+  },
+  "chat.disableAIFeatures": false
 }

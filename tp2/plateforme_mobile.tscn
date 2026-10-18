@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://ti70ytyp8dt6"]
 
 [ext_resource type="Texture2D" uid="uid://cpvia5a7lrl2g" path="res://assets/sprites/platforms.png" id="1_2j53n"]
+[ext_resource type="Script" uid="uid://cr381kn2wnrym" path="res://plateforme_mobile.gd" id="1_2pq0l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujgj0"]
 size = Vector2(32, 9)
 
-[sub_resource type="Animation" id="Animation_2pq0l"]
+[sub_resource type="Animation" id="Animation_2j53n"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -20,10 +21,11 @@ tracks/0/keys = {
 "values": [Vector2(36, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_nbrat"]
-resource_name = "move"
-length = 2.0
+[sub_resource type="Animation" id="Animation_2pq0l"]
+resource_name = "haut_bas"
+length = 1.5
 loop_mode = 2
+step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -31,19 +33,20 @@ tracks/0/path = NodePath("AnimatableBody2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(100, 0)]
+"values": [Vector2(36, 0), Vector2(36, 175)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_m6cdm"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nbrat"]
 _data = {
-&"RESET": SubResource("Animation_2pq0l"),
-&"move": SubResource("Animation_nbrat")
+&"RESET": SubResource("Animation_2j53n"),
+&"haut_bas": SubResource("Animation_2pq0l")
 }
 
 [node name="PlateformeMobile" type="Node2D" unique_id=1432010845]
+script = ExtResource("1_2pq0l")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=452294511]
 position = Vector2(36, 0)
@@ -57,8 +60,6 @@ region_rect = Rect2(16, 0, 32, 9)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1766004195]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_ujgj0")
-one_way_collision = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1926929490]
-libraries/ = SubResource("AnimationLibrary_m6cdm")
-autoplay = &"move"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1413409653]
+libraries/ = SubResource("AnimationLibrary_nbrat")
