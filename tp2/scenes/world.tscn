@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://co806t5p15df4" path="res://scenes/player.tscn" id="1_nnsk1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3sb7"]
-size = Vector2(600, 18)
+size = Vector2(946, 18)
 
 [node name="World" type="Node2D" unique_id=216624496]
 
@@ -16,9 +16,23 @@ size = Vector2(600, 18)
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=1431922525]
 offset_left = -54.0
 offset_top = 5.0
-offset_right = 546.0
+offset_right = 1057.0
 offset_bottom = 23.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=897503474]
-position = Vector2(246, 14)
+position = Vector2(419, 14)
+shape = SubResource("RectangleShape2D_f3sb7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D" unique_id=1251901584]
+position = Vector2(-50, -53)
+rotation = -1.5463617
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D" unique_id=1731327529]
+offset_left = -54.0
+offset_top = 5.0
+offset_right = 1057.0
+offset_bottom = 23.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D" unique_id=1791285759]
+position = Vector2(419, 14)
 shape = SubResource("RectangleShape2D_f3sb7")
