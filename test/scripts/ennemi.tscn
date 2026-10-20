@@ -43,6 +43,7 @@ animations = [{
 size = Vector2(10, 11)
 
 [node name="Node2D" type="Node2D" unique_id=1270753668]
+metadata/_edit_horizontal_guides_ = [-29.0]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1806723258]
 sprite_frames = SubResource("SpriteFrames_bty7c")
