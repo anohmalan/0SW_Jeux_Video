@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dn2ir0xnhk6k5" path="res://assets/sprites/knight.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bj1d2pskcd3ep" path="res://scripts/player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://d0vynfag5lys2" path="res://scripts/state_machine.gd" id="3_qlg0r"]
+[ext_resource type="Script" uid="uid://btse712urs81l" path="res://scripts/States/player_idle.gd" id="4_tuyoq"]
+[ext_resource type="Script" uid="uid://c48p1g00yb4m7" path="res://scripts/States/player_run.gd" id="5_fjrip"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_4flbx")
@@ -319,7 +322,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
-size = Vector2(9, 6.5)
+size = Vector2(12, 6.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=116539264]
 script = ExtResource("1_onrkg")
@@ -327,9 +330,22 @@ script = ExtResource("1_onrkg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=90020485]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"attack"
+animation = &"run"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=818824809]
-position = Vector2(-0.5, -4.25)
+position = Vector2(-1, -4.25)
 shape = SubResource("RectangleShape2D_4flbx")
+
+[node name="StateMachine" type="Node" parent="." unique_id=11978017]
+script = ExtResource("3_qlg0r")
+
+[node name="PlayerIdle" type="Node" parent="StateMachine" unique_id=1201271519 node_paths=PackedStringArray("player")]
+script = ExtResource("4_tuyoq")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://btse712urs81l"
+
+[node name="PlayerRun" type="Node" parent="StateMachine" unique_id=1733689167 node_paths=PackedStringArray("player")]
+script = ExtResource("5_fjrip")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://c48p1g00yb4m7"
