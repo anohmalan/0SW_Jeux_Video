@@ -2,7 +2,7 @@ class_name PlayerJump
 extends BaseState
 
 @export var player : Player
-@export var jump_speed : float = 400.0
+@export var jump_speed : float = 300.0
 var animated_sprite : AnimatedSprite2D
 
 func enter():

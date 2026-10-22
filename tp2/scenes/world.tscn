@@ -1,24 +1,56 @@
 [gd_scene format=3 uid="uid://c766fl78o0cjk"]
 
+[ext_resource type="Texture2D" uid="uid://cd1f87v3cq5lj" path="res://assets/sprites/Ciel bleu pixel art et nuages candides.png" id="1_71j4m"]
 [ext_resource type="PackedScene" uid="uid://co806t5p15df4" path="res://scenes/player.tscn" id="1_nnsk1"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3sb7"]
-size = Vector2(946, 18)
+[ext_resource type="Texture2D" uid="uid://2k3wouyv0es3" path="res://assets/sprites/panorama_montagneuse_pixel_art_bleu.png" id="2_qfnet"]
+[ext_resource type="PackedScene" uid="uid://bs06wsn6ib8og" path="res://scenes/level1.tscn" id="2_rwgxs"]
+[ext_resource type="Texture2D" uid="uid://c00nsohlaaehn" path="res://assets/sprites/forêt_tropicale_pixel_art.png" id="3_i7141"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="6_world"]
 
 [node name="World" type="Node2D" unique_id=216624496]
+script = ExtResource("6_world")
 
 [node name="Player" parent="." unique_id=867683635 instance=ExtResource("1_nnsk1")]
+position = Vector2(0, -4)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=799131288]
+position = Vector2(80, -40)
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+limit_smoothed = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=429266210]
+[node name="Sky" type="Parallax2D" parent="." unique_id=841334340]
+z_index = -30
+scroll_scale = Vector2(0.1, 0)
+repeat_size = Vector2(384, 0)
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=1431922525]
-offset_left = -54.0
-offset_top = 5.0
-offset_right = 1057.0
-offset_bottom = 23.0
+[node name="Sprite2D" type="Sprite2D" parent="Sky" unique_id=781322880]
+position = Vector2(0, -8)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_71j4m")
+centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=897503474]
-position = Vector2(419, 14)
-shape = SubResource("RectangleShape2D_f3sb7")
+[node name="Mountains" type="Parallax2D" parent="." unique_id=1118975166]
+z_index = -20
+scroll_scale = Vector2(0.3, 0)
+repeat_size = Vector2(384, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Mountains" unique_id=594203943]
+position = Vector2(0, -8)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_qfnet")
+centered = false
+
+[node name="Forest" type="Parallax2D" parent="." unique_id=188342471]
+z_index = -10
+scroll_scale = Vector2(0.6, 0)
+repeat_size = Vector2(384, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Forest" unique_id=2077357966]
+position = Vector2(0, -8)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_i7141")
+centered = false
+
+[node name="Level1" parent="." unique_id=1051443406 instance=ExtResource("2_rwgxs")]
+position = Vector2(2, 4)
