@@ -5,10 +5,9 @@
 [ext_resource type="Script" uid="uid://d0vynfag5lys2" path="res://scripts/state_machine.gd" id="3_qlg0r"]
 [ext_resource type="Script" uid="uid://btse712urs81l" path="res://scripts/States/player_idle.gd" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://c48p1g00yb4m7" path="res://scripts/States/player_run.gd" id="5_fjrip"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
-atlas = ExtResource("1_4flbx")
-region = Rect2(32, 160, 32, 32)
+[ext_resource type="Script" uid="uid://c6yr5fhcaavc4" path="res://scripts/States/player_attack.gd" id="6_tuyoq"]
+[ext_resource type="Script" uid="uid://xexgg8cpi1kq" path="res://scripts/States/player_jump.gd" id="7_fjrip"]
+[ext_resource type="Script" path="res://scripts/States/player_fall.gd" id="8_fall"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("1_4flbx")
@@ -173,30 +172,27 @@ region = Rect2(224, 96, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_2hs0m"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g2els")
-}, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_qhqgy")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_dqkch")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_qlg0r")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_tuyoq")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_fjrip")
 }, {
-"duration": 1.0,
+"duration": 0.3,
 "texture": SubResource("AtlasTexture_smehm")
 }],
 "loop": 0,
 "name": &"attack",
-"speed": 7.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -330,15 +326,16 @@ script = ExtResource("1_onrkg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=90020485]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_2hs0m")
-animation = &"run"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=818824809]
 position = Vector2(-1, -4.25)
 shape = SubResource("RectangleShape2D_4flbx")
 
-[node name="StateMachine" type="Node" parent="." unique_id=11978017]
+[node name="StateMachine" type="Node" parent="." unique_id=11978017 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_qlg0r")
+initial_state = NodePath("PlayerIdle")
 
 [node name="PlayerIdle" type="Node" parent="StateMachine" unique_id=1201271519 node_paths=PackedStringArray("player")]
 script = ExtResource("4_tuyoq")
@@ -349,3 +346,17 @@ metadata/_custom_type_script = "uid://btse712urs81l"
 script = ExtResource("5_fjrip")
 player = NodePath("../..")
 metadata/_custom_type_script = "uid://c48p1g00yb4m7"
+
+[node name="PlayerAttack" type="Node" parent="StateMachine" unique_id=2110452993 node_paths=PackedStringArray("player")]
+script = ExtResource("6_tuyoq")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://c6yr5fhcaavc4"
+
+[node name="PlayerJump" type="Node" parent="StateMachine" unique_id=1731309063 node_paths=PackedStringArray("player")]
+script = ExtResource("7_fjrip")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://xexgg8cpi1kq"
+
+[node name="PlayerFall" type="Node" parent="StateMachine" unique_id=694224211 node_paths=PackedStringArray("player")]
+script = ExtResource("8_fall")
+player = NodePath("../..")

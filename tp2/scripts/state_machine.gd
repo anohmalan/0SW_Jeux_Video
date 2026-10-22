@@ -12,8 +12,12 @@ func _ready() -> void:
 			child.Transitioned.connect(on_child_transition)
 	
 	if initial_state :
-		initial_state.enter()
 		current_state = initial_state
+		current_state.enter()
+
+func _input(event: InputEvent) -> void:
+	if current_state:
+		current_state.handle_inputs(event)
 	
 func _process(delta: float) -> void:
 	if current_state:
@@ -30,10 +34,14 @@ func on_child_transition(state, new_state_name):
 	var new_state = states.get(new_state_name.to_lower())
 	
 	if !new_state:
+		push_error("Unknown state: %s" % new_state_name)
+		return
+
+	if new_state == current_state:
 		return
 		
 	if current_state:
 		current_state.exit()
 		
-	new_state.enter()
 	current_state = new_state
+	current_state.enter()
