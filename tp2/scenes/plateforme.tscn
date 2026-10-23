@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://b32htrabeq4su"]
+
+[ext_resource type="Script" uid="uid://bkg8fo5rywmh" path="res://scenes/plateforme.gd" id="1_ygx2q"]
+[ext_resource type="Texture2D" uid="uid://cpvia5a7lrl2g" path="res://assets/sprites/platforms.png" id="2_k4wc5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qfaw"]
+size = Vector2(31, 8)
+
+[sub_resource type="Animation" id="Animation_gmhsp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatableBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vget8"]
+resource_name = "haut_bas"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatableBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0009999999, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 53), Vector2(0, 0), Vector2(0, 54)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vxprs"]
+_data = {
+&"RESET": SubResource("Animation_gmhsp"),
+&"haut_bas": SubResource("Animation_vget8")
+}
+
+[node name="Plateforme" type="Node2D" unique_id=2049646293]
+script = ExtResource("1_ygx2q")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1627536058]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=1186462427]
+texture = ExtResource("2_k4wc5")
+region_enabled = true
+region_rect = Rect2(16, 0, 32, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=672578798]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_3qfaw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1047186897]
+libraries/ = SubResource("AnimationLibrary_vxprs")
